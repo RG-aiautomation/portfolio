@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raymart Gomez | Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f172a, #111827, #1e293b);
+      padding: 80px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(34, 211, 238, 0.12);
+      border: 1px solid rgba(34, 211, 238, 0.25);
+      color: #a5f3fc;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: 52px;
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      font-size: 34px;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #cbd5e1;
+    }
+
+    .hero p.main-text {
+      font-size: 18px;
+      max-width: 650px;
+    }
+
+    .buttons {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: bold;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: #22d3ee;
+      color: #0f172a;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .card,
+    .project-card,
+    .experience-card,
+    .highlight-box {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .hero-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px;
+    }
+
+    .skills-list,
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .skill,
+    .tag {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .skill {
+      background: rgba(34, 211, 238, 0.12);
+      color: #cffafe;
+      border: 1px solid rgba(34, 211, 238, 0.18);
+    }
+
+    .tag {
+      background: #1e293b;
+      color: #e2e8f0;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      transition: 0.25s ease;
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .experience-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .period {
+      color: #a5f3fc;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .resume-box {
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.12), rgba(59, 130, 246, 0.12));
+    }
+
+    .contact-info p,
+    .quick-info p {
+      margin-bottom: 10px;
+    }
+
+    .label {
+      color: white;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 26px 0 40px;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-content,
+      .two-column,
+      .project-grid,
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 92%;
+      }
+
+      .hero {
+        padding: 60px 0;
+      }
+
+      section {
+        padding: 55px 0;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container hero-content">
+      <div>
+        <div class="badge">Virtual Assistant • Automation Builder • Appointment Setter</div>
+        <h1>Raymart Gomez</h1>
+        <p class="main-text">
+          I help businesses save time and close more opportunities through workflow automation,
+          lead follow-up, customer support, and reliable virtual assistance.
+        </p>
+        <div class="buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="hero-box">
+        <div class="card-grid">
+          <div class="card">
+            <p>Target Role</p>
+            <h3>VA / Automation Specialist</h3>
+          </div>
+          <div class="card">
+            <p>Main Strength</p>
+            <h3>n8n + AI Workflows</h3>
+          </div>
+          <div class="card">
+            <p>Focus</p>
+            <h3>Leads, Support, Scheduling</h3>
+          </div>
+          <div class="card">
+            <p>Work Style</p>
+            <h3>Organized & Reliable</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="container two-column">
+      <div class="highlight-box">
+        <h2>About Me</h2>
+        <p>
+          I am a detail-oriented freelancer focused on virtual assistance, customer communication,
+          and automation. I enjoy building practical systems that reduce manual work, improve response
+          time, and help businesses stay organized. My goal is to bring both efficiency and professionalism
+          to every workflow I handle.
+        </p>
+      </div>
+
+      <div class="highlight-box quick-info">
+        <h2>Quick Info</h2>
+        <p><span class="label">Location:</span> Philippines</p>
+        <p><span class="label">Availability:</span> Remote / Freelance / Contract</p>
+        <p><span class="label">Best For:</span> Admin support, lead follow-up, AI workflow setup</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="container highlight-box">
+      <h2>Skills</h2>
+      <div class="skills-list">
+        <span class="skill">n8n Workflow Automation</span>
+        <span class="skill">AI Chatbots</span>
+        <span class="skill">Appointment Setting</span>
+        <span class="skill">Cold Calling</span>
+        <span class="skill">Lead Generation</span>
+        <span class="skill">Customer Support</span>
+        <span class="skill">Google Workspace</span>
+        <span class="skill">CRM Tools</span>
+        <span class="skill">Virtual Assistance</span>
+        <span class="skill">Basic Web Setup</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="container">
+      <h2>Experience</h2>
+      <div class="experience-list">
+        <div class="experience-card">
+          <div class="experience-top">
+            <div>
+              <h3>Virtual Assistant / Automation Builder</h3>
+              <p>Freelance</p>
+            </div>
+            <div class="period">2025 – Present</div>
+          </div>
+          <p>
+            Support businesses with admin tasks, lead management, customer communication,
+            and workflow automation using practical no-code tools.
+          </p>
+        </div>
+
+        <div class="experience-card">
+          <div class="experience-top">
+            <div>
+              <h3>Appointment Setter / Customer Support</h3>
+              <p>Remote / Freelance Projects</p>
+            </div>
+            <div class="period">2024 – Present</div>
+          </div>
+          <p>
+            Handled outreach, follow-ups, customer inquiries, and scheduling while keeping
+            communication professional and organized.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="container">
+      <h2>Projects</h2>
+      <p>Sample portfolio projects you can show to clients or employers.</p>
+
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>AI Appointment Setter Workflow</h3>
+          <p>
+            Built an automation workflow that captures leads, sends instant responses,
+            and schedules appointments using forms, Google Sheets, Gmail, and calendar tools.
+          </p>
+          <div class="tags">
+            <span class="tag">n8n</span>
+            <span class="tag">Google Sheets</span>
+            <span class="tag">Gmail</span>
+            <span class="tag">Google Calendar</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3>Customer Booking Assistant</h3>
+          <p>
+            Created a booking flow for service businesses that collects customer details,
+            confirms appointments, and organizes records automatically.
+          </p>
+          <div class="tags">
+            <span class="tag">n8n</span>
+            <span class="tag">Webhook</span>
+            <span class="tag">Google Calendar</span>
+            <span class="tag">Sheets</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3>AI Chat Support Agent</h3>
+          <p>
+            Designed a chatbot flow for handling common customer questions, collecting inquiries,
+            and routing important concerns for follow-up.
+          </p>
+          <div class="tags">
+            <span class="tag">AI Agent</span>
+            <span class="tag">n8n</span>
+            <span class="tag">FAQ Logic</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3>Lead Follow-Up System</h3>
+          <p>
+            Automated lead tracking and follow-up messages to reduce missed opportunities
+            and improve response speed for prospects.
+          </p>
+          <div class="tags">
+            <span class="tag">n8n</span>
+            <span class="tag">CRM</span>
+            <span class="tag">Email</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume">
+    <div class="container">
+      <div class="highlight-box resume-box">
+        <h2>Resume Section</h2>
+        <p>
+          Add your downloadable resume link here, plus certifications, achievements,
+          tools you use, and a short summary of your work results.
+        </p>
+        <div class="buttons">
+          <a href="#" class="btn btn-primary">Download Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container two-column">
+      <div>
+        <h2>Let’s Work Together</h2>
+        <p>
+          I am open to virtual assistant, appointment setting, customer support,
+          and automation-related opportunities.
+        </p>
+      </div>
+
+      <div class="highlight-box contact-info">
+        <h2>Contact Info</h2>
+        <p><span class="label">Email:</span> yourname@email.com</p>
+        <p><span class="label">Phone:</span> +63 xxx xxx xxxx</p>
+        <p><span class="label">LinkedIn:</span> linkedin.com/in/yourname</p>
+        <p><span class="label">GitHub:</span> github.com/yourname</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Raymart Gomez. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
