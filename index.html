@@ -3,126 +3,147 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raymart Gomez | Hire Me</title>
+<title>Raymart Gomez | Portfolio</title>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial;background:#020617;color:#fff}
-nav{position:fixed;width:100%;top:0;background:#020617;padding:15px;z-index:1000;font-weight:bold}
-.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-.hero h1{font-size:42px;max-width:800px}
-.hero p{margin-top:10px;color:#94a3b8}
-.btn{margin-top:20px;padding:14px 28px;border-radius:30px;background:#6366f1;border:none;color:#fff;cursor:pointer;font-weight:bold}
-.btn:hover{background:#4f46e5}
-section{padding:80px 20px;max-width:1000px;margin:auto}
-.card{background:#0f172a;padding:22px;border-radius:15px;margin-top:20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
-.highlight{color:#6366f1;font-weight:bold}
-footer{text-align:center;padding:30px;color:#94a3b8}
+body{font-family:Arial;background:#020617;color:#fff;overflow-x:hidden}
+
+/* CURSOR LIGHT */
+.cursor{
+ position:fixed;
+ width:70px;height:70px;
+ border-radius:50%;
+ background:rgba(99,102,241,0.6);
+ pointer-events:none;
+ filter:blur(25px);
+ transform:translate(-50%,-50%);
+ z-index:9999;
+}
+
+nav{position:fixed;width:100%;top:0;background:#020617;padding:10px 20px;z-index:1000;font-size:14px}
+
+.hero{
+ padding-top:80px;
+ display:flex;flex-direction:column;align-items:center;text-align:center
+}
+
+.profile{
+ width:130px;height:130px;border-radius:50%;object-fit:cover;
+ border:3px solid transparent;
+ background:linear-gradient(#020617,#020617) padding-box,
+ linear-gradient(45deg,#6366f1,#8b5cf6,#22d3ee) border-box;
+ margin-bottom:12px;
+}
+
+h1{font-size:24px}
+p{color:#94a3b8;font-size:13px}
+
+.btn{margin-top:10px;padding:8px 18px;border-radius:20px;background:#6366f1;color:#fff;border:none}
+
+section{padding:40px 15px;max-width:900px;margin:auto}
+
+.card{background:#0f172a;padding:14px;border-radius:10px;margin-top:12px;font-size:13px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+
+h2{font-size:18px}
+
+footer{text-align:center;padding:20px;color:#94a3b8;font-size:12px}
+
+@media(max-width:600px){h1{font-size:20px}}
 </style>
 </head>
 
 <body>
 
+<div class="cursor" id="cursor"></div>
+
 <nav>Raymart Gomez</nav>
 
 <div class="hero">
-<img src="https://raw.githubusercontent.com/RG-aiautomation/portfolio/main/profile.jpg" alt="Raymart Gomez" style="width:160px;height:160px;border-radius:50%;object-fit:cover;margin-bottom:20px;border:3px solid #6366f1;">
-<h1>I Help Businesses Respond Faster, Book More Clients, and Reduce Manual Work</h1>
-<p>Customer Support • Virtual Assistant • Automation Specialist</p>
-<button class="btn" onclick="document.getElementById('contact').scrollIntoView()">🚀 Hire Me Now</button>
+<img src="profile.jpg" class="profile">
+
+<p>Customer Support • Virtual Assistant • AutoCAD • Automation</p>
+<button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
 </div>
 
 <section>
-<h2>💼 What I Can Do For You</h2>
+<h2>Profile Summary</h2>
 <div class="card">
-✔ Respond to customers instantly (chat, email, phone)<br>
-✔ Set appointments automatically (no missed leads)<br>
-✔ Handle customer issues professionally<br>
-✔ Automate repetitive tasks to save your time
+Top-performing customer service representative with extensive experience assisting customers through phone, email and chat support. Committed to balancing company goals while helping customers find solutions. Resourceful problem solver who remains calm under pressure.
 </div>
 </section>
 
 <section>
-<h2>📈 Results You Can Expect</h2>
+<h2>Core Skills</h2>
+<div class="card">
+Communication • Problem-solving • Active Listening • Adaptability • Time Management<br>
+Customer Support • Phone • Email • Chat • Dispute Resolution • Booking Support<br>
+AutoCAD Drafting • Structural Drawings • Surveying • Engineering Layout<br>
+n8n Workflows • Messenger Bot • WhatsApp Agent • Appointment & Booking Automation
+</div>
+</section>
+
+<section>
+<h2>Experience</h2>
 <div class="grid">
-<div class="card">⚡ Faster response time → happier customers</div>
-<div class="card">📅 More booked appointments → more revenue</div>
-<div class="card">🤖 Less manual work → more time for business</div>
+<div class="card"><b>AutoCAD Technical Assistant</b><br>401 Dev & Const Corp (2024–2026)<br>Produced as-built, shop, and structural drawings, updated plans, collaborated with engineers.</div>
+<div class="card"><b>Line & Grade Engineer</b><br>New San Jose Builders (2024)<br>Handled building layouts, elevations, surveying tools.</div>
+<div class="card"><b>Line & Grade Engineer</b><br>Metro Stonerich (2023–2024)<br>Ensured structural alignment and accuracy.</div>
+<div class="card"><b>Support Ambassador</b><br>Airbnb | Intouch CX (2023)<br>Managed bookings, disputes, listings, customer communication.</div>
+<div class="card"><b>Customer Service Representative</b><br>WNS (2020–2022)<br>Loan verification, document checks, coordination.</div>
+<div class="card"><b>Customer Service Representative</b><br>Sitel (2019)<br>Handled calls, chats, tickets, training support.</div>
+<div class="card"><b>Customer Service Representative</b><br>Adidas (2018–2019)<br>Shipment tracking, logistics, customer issues.</div>
 </div>
 </section>
 
 <section>
-<h2>🛠️ Projects I Can Build For You</h2>
+<h2>Projects</h2>
 <div class="grid">
-
-<div class="card">
-<h3>Messenger Chatbot</h3>
-<p><span class="highlight">Automatically replies</span> to inquiries, captures leads, and answers FAQs 24/7.</p>
-</div>
-
-<div class="card">
-<h3>Appointment Booking System</h3>
-<p><span class="highlight">Books clients automatically</span> using forms + Google Calendar. No more missed leads.</p>
-</div>
-
-<div class="card">
-<h3>WhatsApp AI Agent</h3>
-<p><span class="highlight">Handles conversations</span>, follow-ups, and customer support automatically.</p>
-</div>
-
-<div class="card">
-<h3>AutoCAD Project Work</h3>
-<p><span class="highlight">Professional engineering drawings</span> including structural and layout plans.</p>
-</div>
-
+<div class="card">Messenger Chatbot – Automated replies, FAQ, lead capture</div>
+<div class="card">Appointment System – Booking + Google Calendar automation</div>
+<div class="card">WhatsApp AI Agent – Automated conversations and follow-ups</div>
+<div class="card">AutoCAD Projects – Structural and engineering drawings</div>
 </div>
 </section>
 
 <section>
-<h2>🏆 Experience</h2>
-<div class="grid">
-
+<h2>Education</h2>
 <div class="card">
-<h3>Customer Support Expert</h3>
-<p>Handled high-volume calls, chats, and emails across multiple industries.</p>
-</div>
-
-<div class="card">
-<h3>Airbnb Support Ambassador</h3>
-<p>Resolved booking issues, disputes, and customer concerns professionally.</p>
-</div>
-
-<div class="card">
-<h3>Engineer & AutoCAD Specialist</h3>
-<p>Created technical drawings and handled construction planning tasks.</p>
-</div>
-
+Bachelor of Science in Civil Engineering – University of Manila (2016–2022)<br>
+AutoCAD Drafting – Marikina Polytechnic College (2014–2015)
 </div>
 </section>
 
 <section>
-<h2>🔥 Why Clients Choose Me</h2>
+<h2>Seminars & Training</h2>
 <div class="card">
-✔ Reliable and easy to work with<br>
-✔ Fast learner and adaptable<br>
-✔ Strong communication skills<br>
-✔ Focused on results, not just tasks
+Red Cross 143 Volunteer – West Rizal Branch<br>
+Junior Philippine Institute of Civil Engineers – Metro Manila Chapter
 </div>
 </section>
 
 <section id="contact">
-<h2>📞 Let’s Work Together</h2>
+<h2>Contact</h2>
 <div class="card">
-<p><strong>Email:</strong> rrgomez0000@gmail.com</p>
-<p><strong>Phone:</strong> 0951-725-5895</p>
-
-<br>
-<button class="btn">💬 Message Me Now</button>
+Email: rrgomez0000@gmail.com<br>
+Phone: 0951-725-5895<br>
+Address: Sta. Barbara Villas 1, San Mateo Rizal
 </div>
 </section>
 
 <footer>© 2026 Raymart Gomez</footer>
+
+<script>
+const cursor=document.getElementById('cursor');
+document.addEventListener('mousemove',e=>{
+cursor.style.left=e.clientX+'px';
+cursor.style.top=e.clientY+'px';
+});
+
+function scrollTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});} 
+</script>
 
 </body>
 </html>
