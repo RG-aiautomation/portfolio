@@ -468,44 +468,85 @@
       font-size: 0.96rem;
     }
 
-.cursor-glow {
-  position: fixed;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(0, 255, 170, 1) 0%,
-    rgba(0, 255, 140, 0.6) 40%,
-    rgba(0, 200, 120, 0.3) 65%,
-    transparent 85%
-  );
-  filter: blur(10px);
-  opacity: 1;
-  transition: width 0.2s ease, height 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
-}
+    .quote-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-top: 10px;
+      padding: 12px 20px 0;
+    }
 
-.cursor-trail {
-  position: fixed;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(
-    circle,
-    rgba(0, 255, 170, 0.35),
-    rgba(0, 255, 140, 0.2) 50%,
-    transparent 75%
-  );
-  filter: blur(25px);
-  opacity: 0.9;
-  transition: all 0.3s ease;
-}
+    .typing-quote {
+      font-size: 18px;
+      font-style: italic;
+      background: linear-gradient(90deg, #00ff99, #00cc66);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0.95;
+      text-shadow: 0 0 10px rgba(0,255,153,0.35);
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #00ff99;
+      padding-right: 6px;
+      animation: blinkCursor 0.8s infinite;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      max-width: 100%;
+    }
+
+    .typing-quote.fade-out {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .typing-quote.fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes blinkCursor {
+      0%, 50% { border-color: #00ff99; }
+      51%, 100% { border-color: transparent; }
+    }
+
+    .cursor-glow {
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(
+        circle,
+        rgba(0, 255, 170, 1) 0%,
+        rgba(0, 255, 140, 0.6) 40%,
+        rgba(0, 200, 120, 0.3) 65%,
+        transparent 85%
+      );
+      filter: blur(10px);
+      opacity: 1;
+      transition: width 0.2s ease, height 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
+    }
+
+    .cursor-trail {
+      position: fixed;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(
+        circle,
+        rgba(0, 255, 170, 0.35),
+        rgba(0, 255, 140, 0.2) 50%,
+        transparent 75%
+      );
+      filter: blur(25px);
+      opacity: 0.9;
+      transition: all 0.3s ease;
+    }
 
     a:hover,
     button:hover,
@@ -542,6 +583,13 @@
 
       .project-grid {
         grid-template-columns: 1fr;
+      }
+
+      .typing-quote {
+        font-size: 14px;
+        white-space: normal;
+        border-right: none;
+        animation: none;
       }
     }
 
@@ -665,6 +713,48 @@
           themeToggle.textContent = 'Light Mode';
         }
       });
+
+      const quoteText = "“Whether you think you can or you can’t — you’re right.”";
+      const quoteEl = document.getElementById("typing-quote");
+
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function typeQuote() {
+        if (!quoteEl) return;
+
+        if (!isDeleting) {
+          quoteEl.textContent = quoteText.slice(0, charIndex + 1);
+          charIndex++;
+
+          if (charIndex === quoteText.length) {
+            quoteEl.classList.add("fade-out");
+            setTimeout(() => {
+              isDeleting = true;
+              quoteEl.classList.remove("fade-out");
+              typeQuote();
+            }, 1800);
+            return;
+          }
+        } else {
+          quoteEl.textContent = quoteText.slice(0, charIndex - 1);
+          charIndex--;
+
+          if (charIndex === 0) {
+            quoteEl.classList.add("fade-in");
+            setTimeout(() => {
+              isDeleting = false;
+              quoteEl.classList.remove("fade-in");
+              typeQuote();
+            }, 400);
+            return;
+          }
+        }
+
+        setTimeout(typeQuote, isDeleting ? 35 : 65);
+      }
+
+      typeQuote();
     });
   </script>
 </head>
@@ -1024,7 +1114,9 @@
 
   <footer class="footer">
     <div class="container">
-      © 2026 Raymart Gomez. All rights reserved.
+      <div class="quote-wrap">
+        <p id="typing-quote" class="typing-quote"></p>
+      </div>
     </div>
   </footer>
 </body>
