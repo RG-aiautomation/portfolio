@@ -468,33 +468,44 @@
       font-size: 0.96rem;
     }
 
-    .cursor-glow {
-      position: fixed;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle, rgba(0, 255, 140, 0.95), rgba(0, 255, 140, 0.3) 60%, transparent 80%);
-      filter: blur(8px);
-      opacity: 1;
-      transition: width 0.2s ease, height 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
-    }
+.cursor-glow {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 170, 1) 0%,
+    rgba(0, 255, 140, 0.6) 40%,
+    rgba(0, 200, 120, 0.3) 65%,
+    transparent 85%
+  );
+  filter: blur(10px);
+  opacity: 1;
+  transition: width 0.2s ease, height 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
+}
 
-    .cursor-trail {
-      position: fixed;
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle, rgba(0, 255, 140, 0.3), transparent 70%);
-      filter: blur(20px);
-      opacity: 0.9;
-      transition: all 0.3s ease;
-    }
+.cursor-trail {
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 170, 0.35),
+    rgba(0, 255, 140, 0.2) 50%,
+    transparent 75%
+  );
+  filter: blur(25px);
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
 
     a:hover,
     button:hover,
