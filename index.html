@@ -1,169 +1,728 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Raymart Gomez | Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raymart Gomez | Resume Website</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: rgba(255,255,255,0.08);
+      --panel-strong: rgba(255,255,255,0.12);
+      --text: #eef2ff;
+      --muted: #b9c3e3;
+      --line: rgba(255,255,255,0.14);
+      --accent: #ff8b3d;
+      --accent-2: #52b6ff;
+      --shadow: 0 18px 45px rgba(0,0,0,0.28);
+      --radius: 22px;
+      --max: 1180px;
+    }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial;background:#020617;color:#fff;overflow-x:hidden}
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(82,182,255,0.22), transparent 28%),
+        radial-gradient(circle at top right, rgba(255,139,61,0.18), transparent 24%),
+        linear-gradient(180deg, #09101f 0%, #0d1430 100%);
+      line-height: 1.6;
+    }
 
-/* CURSOR LIGHT */
-.cursor{
- position:fixed;
- width:45px;height:45px;
- border-radius:50%;
- background:rgba(255, 221, 87, 0.6);
- pointer-events:none;
- filter:blur(18px);
- transform:translate(-50%,-50%);
- z-index:9999;
-}
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-nav{position:fixed;width:100%;top:0;background:#020617;padding:10px 20px;z-index:1000}
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
 
-.hero{
- padding-top:80px;
- display:flex;
- flex-direction:column;
- align-items:center;
- text-align:center;
-}
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(9, 16, 31, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
 
-.profile{
- width:140px;
- height:140px;
- border-radius:50%;
- object-fit:cover;
- border:3px solid transparent;
- background:linear-gradient(#020617,#020617) padding-box,
- linear-gradient(45deg,#6366f1,#8b5cf6,#22d3ee) border-box;
- box-shadow:0 0 25px rgba(99,102,241,0.7);
- margin-bottom:8px;
-}
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 0;
+    }
 
-.name{
- font-size:18px;
- font-weight:bold;
- margin-bottom:8px;
-}
+    .brand { display: none; }
 
-h1{font-size:22px;max-width:700px}
-p{color:#94a3b8;font-size:13px}
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
-.btn{
- margin-top:10px;
- padding:8px 18px;
- border-radius:20px;
- background:#6366f1;
- color:#fff;
- border:none;
- cursor:pointer;
-}
+    .nav-links a {
+      font-size: 0.96rem;
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
 
-section{padding:40px 15px;max-width:900px;margin:auto}
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.08);
+    }
 
-.card{
- background:#0f172a;
- padding:14px;
- border-radius:10px;
- margin-top:12px;
- font-size:13px;
-}
+    .hero {
+      padding: 72px 0 28px;
+    }
 
-.grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
- gap:12px;
-}
+    .hero-card {
+      display: grid;
+      grid-template-columns: 290px 1fr;
+      gap: 34px;
+      align-items: center;
+      background: linear-gradient(180deg, var(--panel-strong), var(--panel));
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      padding: 34px;
+      overflow: hidden;
+      position: relative;
+    }
 
-h2{font-size:18px}
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -70px -70px auto;
+      width: 230px;
+      height: 230px;
+      background: radial-gradient(circle, rgba(255,139,61,0.18), transparent 65%);
+      pointer-events: none;
+    }
 
-footer{text-align:center;padding:20px;color:#94a3b8;font-size:12px}
-</style>
+    .photo-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 260px;
+      aspect-ratio: 1 / 1;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(82,182,255,0.12);
+      color: #cce8ff;
+      border: 1px solid rgba(82,182,255,0.2);
+      font-size: 0.92rem;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2.3rem, 4vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .title {
+      color: #ffd0b4;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .summary {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 1.02rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ffb16f);
+      color: #1f1208;
+      box-shadow: 0 12px 26px rgba(255,139,61,0.28);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+      color: var(--text);
+    }
+
+    .quick-info {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .quick-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .quick-card strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .quick-card span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    section {
+      padding: 20px 0 8px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 18px;
+      font-size: 1.7rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title::before {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 20px rgba(82,182,255,0.35);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 22px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .item {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .role {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .company {
+      color: #ffd0b4;
+      font-weight: 700;
+      margin: 3px 0 0;
+    }
+
+    .date {
+      white-space: nowrap;
+      color: #d6defc;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+      color: var(--muted);
+    }
+
+    .skill-list, .training-list, .contact-list {
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-weight: 600;
+    }
+
+    .edu-item h3,
+    .contact-list strong {
+      margin: 0 0 4px;
+      font-size: 1.02rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 34px 0 60px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.96rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-card,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-wrap {
+        max-width: 220px;
+      }
+
+      .quick-info {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .hero-card,
+      .card {
+        padding: 20px;
+      }
+
+      .item-top {
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 2.25rem;
+      }
+    }
+  
+
+    /* Yellow cursor glow */
+    .cursor-glow,
+    .cursor-trail {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-glow {
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle, rgba(255, 221, 87, 0.95), rgba(255, 221, 87, 0.28) 58%, transparent 82%);
+      filter: blur(6px);
+      transition: width 0.18s ease, height 0.18s ease, filter 0.18s ease, opacity 0.18s ease;
+    }
+
+    .cursor-trail {
+      width: 78px;
+      height: 78px;
+      background: radial-gradient(circle, rgba(255, 221, 87, 0.22), rgba(255, 221, 87, 0.08) 55%, transparent 78%);
+      filter: blur(16px);
+      opacity: 0.9;
+      transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
+    }
+
+    a:hover,
+    button:hover,
+    .btn:hover {
+      cursor: pointer;
+    }
+
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const glow = document.createElement('div');
+      glow.className = 'cursor-glow';
+
+      const trail = document.createElement('div');
+      trail.className = 'cursor-trail';
+
+      document.body.appendChild(trail);
+      document.body.appendChild(glow);
+
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let trailX = mouseX;
+      let trailY = mouseY;
+      let hovering = false;
+
+      document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        glow.style.left = mouseX + 'px';
+        glow.style.top = mouseY + 'px';
+      });
+
+      document.addEventListener('mouseover', function(e) {
+        hovering = !!e.target.closest('a, button, .btn');
+        if (hovering) {
+          glow.style.width = '74px';
+          glow.style.height = '74px';
+          glow.style.filter = 'blur(10px)';
+          trail.style.width = '110px';
+          trail.style.height = '110px';
+          trail.style.filter = 'blur(22px)';
+          trail.style.opacity = '1';
+        } else {
+          glow.style.width = '50px';
+          glow.style.height = '50px';
+          glow.style.filter = 'blur(6px)';
+          trail.style.width = '78px';
+          trail.style.height = '78px';
+          trail.style.filter = 'blur(16px)';
+          trail.style.opacity = '0.9';
+        }
+      });
+
+      function animateTrail() {
+        trailX += (mouseX - trailX) * 0.16;
+        trailY += (mouseY - trailY) * 0.16;
+        trail.style.left = trailX + 'px';
+        trail.style.top = trailY + 'px';
+        requestAnimationFrame(animateTrail);
+      }
+
+      animateTrail();
+    });
+  </script>
 </head>
-
 <body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Raymart Gomez</div>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#training">Training</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-<div class="cursor" id="cursor"></div>
+  <header class="hero container">
+    <div class="hero-card">
+      <div class="photo-wrap">
+        <img src="received_1423789715132633.jpeg" alt="Raymart Gomez profile photo" />
+      </div>
 
-<nav></nav>
+      <div>
+        
+        <h1>Raymart Gomez</h1>
+        <div class="title">Customer Service Professional • Civil Engineering Graduate • Technical Assistant</div>
+        <p class="summary">
+          Top-performing customer service representative with experience in phone, email, and chat support, plus hands-on construction and technical assistant work. Known for staying calm under pressure, solving problems efficiently, and balancing company goals with customer satisfaction.
+        </p>
 
-<div class="hero">
-<img src="profile.jpg" class="profile">
-<div class="name">Raymart Gomez</div>
-<h1>I Help Businesses Respond Faster, Book More Clients, and Automate Workflows</h1>
-<p>Customer Support • Virtual Assistant • AutoCAD • Automation</p>
-<button class="btn" onclick="scrollTo('contact')">Hire Me</button>
-</div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="mailto:rrgomez0000@gmail.com">Email Me</a>
+          <a class="btn btn-secondary" href="tel:09517255895">Call Me</a>
+          <a class="btn btn-secondary" href="#experience">View Experience</a>
+        </div>
 
-<section>
-<h2>Profile Summary</h2>
-<div class="card">
-Top-performing customer service representative with experience in phone, email, and chat support. Skilled in problem-solving and working under pressure.
-</div>
-</section>
+        <div class="quick-info">
+          <div class="quick-card">
+            <strong>Location</strong>
+            <span>Sta. Barbara Villas 1, Silangan, San Mateo, Rizal</span>
+          </div>
+          <div class="quick-card">
+            <strong>Email</strong>
+            <span>rrgomez0000@gmail.com</span>
+          </div>
+          <div class="quick-card">
+            <strong>Phone</strong>
+            <span>0951-725-5895</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<section>
-<h2>Core Skills</h2>
-<div class="card">
-Communication • Problem-solving • Active Listening • Adaptability • Time Management<br>
-Customer Support • Phone • Email • Chat • Dispute Resolution • Booking Support<br>
-AutoCAD Drafting • Structural Drawings • Surveying • Engineering Layout<br>
-n8n Workflows • Messenger Bot • WhatsApp Agent • Appointment & Booking Automation
-</div>
-</section>
+  <main class="container">
+    <section id="about">
+      <div class="grid-2">
+        <div class="card">
+          <h2 class="section-title">Professional Summary</h2>
+          <p class="muted">
+            I bring a strong mix of customer service, technical coordination, and construction support experience. My background includes assisting customers through phone, email, chat, and social media, as well as preparing detailed drawings, supporting engineering layout work, and coordinating with teams to turn instructions into accurate outputs.
+          </p>
+          <p class="muted">
+            My strengths include communication, adaptability, active listening, time management, and problem-solving in fast-paced environments.
+          </p>
+        </div>
 
-<section>
-<h2>Experience (Results)</h2>
-<div class="grid">
-<div class="card"><b>AutoCAD Technical Assistant</b><br>Delivered structural drawings and updated plans efficiently.</div>
-<div class="card"><b>Line & Grade Engineer</b><br>Ensured layout accuracy and structural alignment on-site.</div>
-<div class="card"><b>Support Ambassador</b><br>Resolved booking issues and handled customer disputes.</div>
-<div class="card"><b>Customer Service</b><br>Handled calls, chat, email, logistics, and verification tasks.</div>
-</div>
-</section>
+        <div class="card" id="contact">
+          <h2 class="section-title">Contact</h2>
+          <ul class="contact-list">
+            <li>
+              <strong>Email</strong>
+              <div class="muted"><a href="mailto:rrgomez0000@gmail.com">rrgomez0000@gmail.com</a></div>
+            </li>
+            <li>
+              <strong>Phone</strong>
+              <div class="muted"><a href="tel:09517255895">0951-725-5895</a></div>
+            </li>
+            <li>
+              <strong>Address</strong>
+              <div class="muted">Sta. Barbara Villas 1, Silangan, San Mateo, Rizal</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-<section>
-<h2>Projects</h2>
-<div class="grid">
-<div class="card">Messenger Chatbot – Auto replies + lead capture</div>
-<div class="card">Booking System – Automated scheduling</div>
-<div class="card">WhatsApp Agent – Automated support</div>
-<div class="card">AutoCAD Projects – Engineering drawings</div>
-</div>
-</section>
+    <section id="experience">
+      <div class="card">
+        <h2 class="section-title">Work Experience</h2>
+        <div class="timeline">
+          <article class="item">
+            <div class="item-top">
+              <div>
+                <h3 class="role">Autocad / Technical Assistant</h3>
+                <p class="company">401 Dev. &amp; Const. Corp. | Construction</p>
+              </div>
+              <div class="date">November 2024 – March 2026</div>
+            </div>
+            <ul>
+              <li>Produced detailed as-built, shop, and structural drawings for construction.</li>
+              <li>Updated existing drawings based on markups, calculations, or feedback from engineers, architects, and site visits.</li>
+              <li>Worked with project teams to interpret briefs and translate verbal or rough sketch instructions into technical plans.</li>
+            </ul>
+          </article>
 
-<section>
-<h2>Trust & Credibility</h2>
-<div class="grid">
-<div class="card">Multi-industry experience</div>
-<div class="card">Strong communication skills</div>
-<div class="card">Technical + support skills</div>
-<div class="card">Reliable under pressure</div>
-</div>
-</section>
+          <article class="item">
+            <div class="item-top">
+              <div>
+                <h3 class="role">Line and Grade Engineer</h3>
+                <p class="company">New San Jose Builders Inc. | Construction</p>
+              </div>
+              <div class="date">June 2024 – November 2024</div>
+            </div>
+            <ul>
+              <li>Established building control lines, grid lines, floor elevations, and excavation layouts.</li>
+              <li>Ensured structural elements were installed according to approved plans and required tolerances.</li>
+              <li>Used total stations, levels, and other surveying instruments.</li>
+            </ul>
+          </article>
 
-<section id="contact">
-<h2>Contact</h2>
-<div class="card">
-Email: rrgomez0000@gmail.com<br>
-Phone: 0951-725-5895
-</div>
-</section>
+          <article class="item">
+            <div class="item-top">
+              <div>
+                <h3 class="role">Line and Grade Engineer</h3>
+                <p class="company">Metro Stonerich Corporation | Construction</p>
+              </div>
+              <div class="date">September 2023 – May 2024</div>
+            </div>
+            <ul>
+              <li>Established building control lines, grid lines, floor elevations, and excavation layouts.</li>
+              <li>Ensured structural elements were installed according to approved plans and required tolerances.</li>
+              <li>Used total stations, levels, and other surveying instruments.</li>
+            </ul>
+          </article>
 
-<footer>© 2026 Raymart Gomez</footer>
+          <article class="item">
+            <div class="item-top">
+              <div>
+                <h3 class="role">Support Ambassador</h3>
+                <p class="company">Intouch CX | Airbnb</p>
+              </div>
+              <div class="date">January 2023 – September 2023</div>
+            </div>
+            <ul>
+              <li>Managed customer issues end-to-end, including booking problems, disputes, and safety concerns.</li>
+              <li>Assisted hosts with listings, calendar management, and listing accuracy improvements.</li>
+              <li>Interacted with users through phone, email, chat, and social media platforms.</li>
+              <li>Acted as a mediator between guests and hosts to help reach fair agreements.</li>
+            </ul>
+          </article>
 
-<script>
-const cursor=document.getElementById('cursor');
-document.addEventListener('mousemove',e=>{
-cursor.style.left=e.clientX+'px';
-cursor.style.top=e.clientY+'px';
-});
+          <article class="item">
+            <div class="item-top">
+              <div>
+                <h3 class="role">Customer Service Representative</h3>
+                <p class="company">WNS Global Services | Pennymac</p>
+              </div>
+              <div class="date">February 2020 – August 2022</div>
+            </div>
+            <ul>
+              <li>Confirmed applicant information including income, employment history, and financial assets.</li>
+              <li>Reviewed loan files to ensure required documents were complete, accurate, and properly signed.</li>
+              <li>Acted as a liaison between borrowers, loan officers, and underwriters to resolve missing information or issues.</li>
+            </ul>
+          </article>
 
-function scrollTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});} 
-</script>
+          <article class="item">
+            <div class="item-top">
+              <div>
+                <h3 class="role">Customer Service Representative</h3>
+                <p class="company">Sitel | Metlife</p>
+              </div>
+              <div class="date">March 2019 – September 2019</div>
+            </div>
+            <ul>
+              <li>Responded to inquiries via chat, email, and phone while maintaining high satisfaction scores.</li>
+              <li>Analyzed ticket trends, documented solutions, and helped improve workflows.</li>
+              <li>Created user guides and mentored team members on systems and procedures.</li>
+              <li>Helped customers navigate the portal and reset passwords when needed.</li>
+            </ul>
+          </article>
 
+          <article class="item">
+            <div class="item-top">
+              <div>
+                <h3 class="role">Customer Service Representative</h3>
+                <p class="company">Alta Resources | Adidas</p>
+              </div>
+              <div class="date">October 2018 – February 2019</div>
+            </div>
+            <ul>
+              <li>Tracked shipments through carrier websites to support timely delivery.</li>
+              <li>Entered data into logistics systems to maintain accurate package records.</li>
+              <li>Addressed delays, missing items, and damaged package issues proactively.</li>
+              <li>Handled shipping documents such as bills of lading and customs paperwork.</li>
+              <li>Assisted customers with product and service inquiries.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="grid-2">
+        <div class="card">
+          <h2 class="section-title">Education</h2>
+          <div class="timeline">
+            <div class="item edu-item">
+              <h3>Bachelor of Science in Civil Engineering</h3>
+              <div class="muted">The University of Manila</div>
+              <div class="muted">2016 – 2022</div>
+            </div>
+            <div class="item edu-item">
+              <h3>Autocad Drafting</h3>
+              <div class="muted">Marikina Polytechnic College</div>
+              <div class="muted">2014 – 2015</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="skills">
+          <h2 class="section-title">Core Skills</h2>
+          <div class="pill-grid">
+            <span class="pill">Communication Skills</span>
+            <span class="pill">Problem-Solving</span>
+            <span class="pill">Adaptability</span>
+            <span class="pill">Active Listening</span>
+            <span class="pill">Time Management</span>
+            <span class="pill">Phone Support</span>
+            <span class="pill">Email Support</span>
+            <span class="pill">Chat Support</span>
+            <span class="pill">AutoCAD</span>
+            <span class="pill">Technical Drawing</span>
+            <span class="pill">Surveying Tools</span>
+            <span class="pill">Customer Mediation</span>
+            <span class="pill">Messenger Chat Bot</span>
+            <span class="pill">Telegram Chat Bot</span>
+            <span class="pill">WhatsApp Chat Bot</span>
+            <span class="pill">Booking & Appointment Automation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="training">
+      <div class="card">
+        <h2 class="section-title">Seminars &amp; Training Attended</h2>
+        <ul class="training-list muted">
+          <li>Red Cross 143 (Volunteer), West Rizal Branch, San Mateo</li>
+          <li>Junior Philippines Institute of Civil Engineers, Metro Manila Chapter</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    Built as a personal resume website for Raymart Gomez.
+  </footer>
 </body>
 </html>
